@@ -10,3 +10,4 @@ echo 1;
 $th = 'asd';
 
 $pass = 'ok';
+echo "123456";
