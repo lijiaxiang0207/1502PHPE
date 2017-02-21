@@ -6,4 +6,6 @@
  * Time: 13:59
  */
 echo 1;
-echo "hello word";
+
+
+$th = '';
