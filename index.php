@@ -8,3 +8,5 @@
 echo 1;
 
 $th = 'asd';
+
+$pass = 'ok';
