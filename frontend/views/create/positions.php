@@ -45,25 +45,25 @@
             <a class="logo" href="http://www.lagou.com/">
                 <img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="./home/images/logo.png">
             </a>
-            <ul id="navheader" class="reset">
+            <ul class="reset" id="navheader">
                 <li><a href="?r=index/index">首页</a></li>
                 <li><a href="?r=index/companylist">公司</a></li>
-                <li><a target="_blank" href="http://www.lagou.com/toForum.html">论坛</a></li>
-                <li><a rel="nofollow" href="jianli.html">我的简历</a></li>
+                <li><a href="#" target="_blank">论坛</a></li>
+                <li><a href="?r=create/index" rel="nofollow">发布职位</a></li>
+                <li class="current"><a href="?r=create/positions" rel="nofollow">有效职位</a></li>
             </ul>
             <dl class="collapsible_menu">
                 <dt>
-                    <span>jason&nbsp;</span>
-                    <span class="red" id="noticeDot-0"></span>
+                    <?php $session = Yii::$app->session; ?>
+                    <span><?= $session['email']; ?>&nbsp;</span>
+                    <span class="red dn" id="noticeDot-1"></span>
                     <i></i>
                 </dt>
-                <dd><a rel="nofollow" href="jianli.html">我的简历</a></dd>
-                <dd><a href="collections.html">我收藏的职位</a></dd>
-                <dd><a href="delivery.html">我投递的职位 <span id="noticeNo" class="red">(1)</span></a></dd>
-                <dd class="btm"><a href="subscribe.html">我的订阅</a></dd>
-                <dd><a href="create.html">我要招人</a></dd>
-                <dd><a href="accountBind.html">帐号设置</a></dd>
-                <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
+                <dd><a href="?r=fcreate/index">我发布的职位</a></dd>
+                <dd><a href="?r=fcompany/jianli-list">我收到的简历</a></dd>
+                <dd class="btm"><a href="?r=fcompany/index01">我的公司主页</a></dd>
+                <dd><a href="?r=login/res">帐号设置</a></dd>
+                <dd class="logout"><a rel="nofollow" href="?r=login/out">退出</a></dd>
             </dl>
             <div id="noticeTip">
                 <span class="bot"></span>
@@ -97,7 +97,7 @@
             <dl class="company_center_aside">
                 <dt>我发布的职位</dt>
                 <dd class="current">
-                    <a href="positions.html">有效职位</a>
+                    <a href="?r=create/positions">有效职位</a>
                 </dd>
                 <dd>
                     <a href="positions.html">已下线职位</a>

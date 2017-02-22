@@ -84,27 +84,30 @@
                         <i></i>
                     </dt>
 
+                <?php
+                if ($session['type'] == 1) { ?>
+                    <dd><a href="?r=fcreate/index">我发布的职位</a></dd>
+                    <dd><a href="?r=fcompany/jianli-list">我收到的简历</a></dd>
+                    <dd class="btm"><a href="?r=fcompany/index01">我的公司主页</a></dd>
                     <?php
-                    if ($session['type'] == 1) { ?>
-                        <dd><a href="?r=fcreate/index">我发布的职位</a></dd>
-                        <dd><a href="?r=fcompany/jianli-list">我收到的简历</a></dd>
-                        <dd class="btm"><a href="?r=fcompany/index01">我的公司主页</a></dd>
-                        <?php
 
-                    } else {
-                        ?>
+                } else {
+                    ?>
 
-                        <dd><a href="http://localhost/sixgroup/web/index.php?r=findex/index">我要找工作</a></dd>
+                    <dd><a rel="nofollow" href="?r=resume/resume">我的简历</a></dd>
+                    <dd><a href="collections.html">我收藏的职位</a></dd>
+                    <dd class="btm"><a href="subscribe.html">我的订阅</a></dd>
+                    <dd><a href="?r=index/list">我要找工作</a></dd>
 
-                        <?php
+                    <?php
                     }
 
-                    ?>
+                ?>
                     <dd><a href="?r=login/res">帐号设置</a></dd>
                     <dd class="logout"><a rel="nofollow" href="?r=login/out">退出</a></dd>
                 </dl>
                 <?php
-
+            
             }
             ?>
         </div>
@@ -146,7 +149,7 @@
                     </div>
                 <?php endforeach ?>
             </div>
-            <a class="subscribe" href="subscribe.html" target="_blank">订阅职位</a>
+            <a class="subscribe" href="?r=position/scribelist" target="_blank">订阅职位</a>
         </div>
         <div class="content">
             <div id="search_box">
@@ -388,7 +391,7 @@
                             <div class="hot_pos_l">
                                 <div class="mb10">
                                     <!--职位名称-->
-                                    <a href="?r=index/jobdetail&position_id=<?php echo $value['position_id'] ?>"
+                                    <a href="?r=position/jobdetail&position_id=<?php echo $value['position_id'] ?>"
                                        target="_blank"><?php echo $value['position_name'] ?></a>
                                     &nbsp;<!--工作地点-->
                                     <span class="c9">[<?php echo $value['workcity'] ?>]</span>
@@ -456,6 +459,7 @@
                     <?php } ?>
                     <a href="list.html?city=%E5%85%A8%E5%9B%BD" class="btn fr" target="_blank">查看更多</a>
                 </ul>
+
 
 
             </div>

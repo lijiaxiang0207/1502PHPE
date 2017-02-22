@@ -49,26 +49,66 @@
             <a class="logo" href="index.html">
                 <img width="229" height="43" alt="拉勾招聘-专注互联网招聘" src="home/images/logo.png">
             </a>
-            <ul id="navheader" class="reset">
-                <li><a href="index.html">首页</a></li>
-                <li class="current"><a href="companylist.html">公司</a></li>
-                <li><a target="_blank" href="">论坛</a></li>
-                <li><a rel="nofollow" href="">简历管理</a></li>
-                <li><a rel="nofollow" href="create.html">发布职位</a></li>
+            <ul class="reset" id="navheader">
+                <li><a href="?r=index/index">首页</a></li>
+                <li class="current"><a href="?r=index/com">我的公司</a></li>
+                <li><a href="?r=index/companylist">其他公司</a></li>
+                <li><a href="#" target="_blank">论坛</a></li>
+                <?php $session = Yii::$app->session;
+                if (!empty($session['email'])) { ?>
+
+                    <?php if ($session['type'] == 0) { ?>
+                        <li><a href="?r=fjianli/myself" rel="nofollow">我的简历</a></li>
+                    <?php } else { ?>
+                        <li><a href="?r=create/index" rel="nofollow">发布职位</a></li>
+                    <?php }
+                } ?>
             </ul>
-            <dl class="collapsible_menu">
-                <dt>
-                    <span>jason&nbsp;</span>
-                    <span class="red dn" id="noticeDot-1"></span>
-                    <i></i>
-                </dt>
-                <dd><a href="positions.html">我发布的职位</a></dd>
-                <dd><a href="">我收到的简历</a></dd>
-                <dd class="btm"><a href="myhome.html">我的公司主页</a></dd>
-                <dd><a href="jianli.html">我要找工作</a></dd>
-                <dd><a href="accountBind.html">帐号设置</a></dd>
-                <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
-            </dl>
+            <?php
+            $session = Yii::$app->session;
+
+            if (empty($session['email'])) { ?>
+
+                <ul class="loginTop">
+                    <li><a href="?r=login/index">登录</a></li>
+                    <li>|</li>
+                    <li><a href="?r=login/register">注册</a></li>
+                </ul>
+
+                <?php
+            } else {
+
+                ?>
+                <dl class="collapsible_menu">
+                    <dt>
+                        <span><?= $session['email']; ?>&nbsp;</span>
+                        <span class="red dn" id="noticeDot-1"></span>
+                        <i></i>
+                    </dt>
+
+                    <?php
+                    if ($session['type'] == 1) { ?>
+                        <dd><a href="?r=fcreate/index">我发布的职位</a></dd>
+                        <dd><a href="?r=fcompany/jianli-list">我收到的简历</a></dd>
+                        <dd class="btm"><a href="?r=company/index">我的公司主页</a></dd>
+                        <?php
+
+                    } else {
+                        ?>
+
+                        <dd><a href="http://localhost/sixgroup/web/index.php?r=findex/index">我要找工作</a></dd>
+
+                        <?php
+                    }
+
+                    ?>
+                    <dd><a href="?r=user/index">帐号设置</a></dd>
+                    <dd class="logout"><a rel="nofollow" href="?r=login/out">退出</a></dd>
+                </dl>
+                <?php
+
+            }
+            ?>
         </div>
     </div><!-- end #header -->
 
@@ -83,12 +123,12 @@
                 <dd id="step2Form">
                     <div class="c_text">简短明了的标签信息让求职者更加方便检索，更快找到你们！</div>
                     <img width="668" height="56" class="c_steps" alt="第二步" src="home/images/step2.png">
-
+                    <form action="?r=company/settwopro" method="post">
                     <h3>已添加标签</h3>
                     <ul class="reset" id="labels">
                     </ul>
 
-                    <input type="text" placeholder="请输入自定义标签" name="label" id="label">
+                        <input type="text" placeholder="请输入自定义标签" id="label">
                     <input type="submit" value="贴上" id="add_label">
                     <div class="clear"></div>
                     <div id="box_labels">
@@ -143,9 +183,10 @@
                             </dd>
                         </dl>
                     </div>
-                    <input type="hidden" id="companyId" name="companyId" value="25927">
-                    <input type="button" value="保存，下一步" id="step2Submit" class="btn_big fr">
+                        <!-- <input type="hidden" id="companyId" name="companyId" value="25927"> -->
+                        <input type="submit" value="保存，下一步" id="step2Submit" class="btn_big fr">
                     <a class="btn_cancel fr" href="?r=company/setthree">跳过</a>
+                    </form>
                 </dd>
             </dl>
         </div>

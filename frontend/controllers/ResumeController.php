@@ -8,7 +8,6 @@ use yii\web\Controller;
  * Index controller
  */
 header("content-type:text/html;charset=utf-8");
-
 class ResumeController extends Controller
 {
     public $layout = false;
@@ -437,5 +436,4 @@ class ResumeController extends Controller
 
 
 }
-
 ?>

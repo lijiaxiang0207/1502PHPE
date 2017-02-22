@@ -6,8 +6,4 @@
  * Time: 13:59
  */
 echo 1;
-
-$th = 'asd';
-
-$pass = 'ok';
-echo 123;
+echo "hello word";

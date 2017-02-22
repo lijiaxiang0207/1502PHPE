@@ -10,7 +10,6 @@ use yii\web\Controller;
  * Index controller
  */
 header("content-type:text/html;charset=utf-8");
-
 class IndexController extends Controller
 {
     public $layout = false;
@@ -87,31 +86,31 @@ class IndexController extends Controller
     {
 
         $session = Yii::$app->session;
-        $company_id = $session['id'];
+        //   获取登录者的身份
+        $type = $session['type'];
 
         /********************************************************************************\
-         *****************        取出session中存储的公司id             *****************
-         *****************     不存在            表示没有登录           *****************
-         *****************     id为0             表示登录者是求职者     *****************
-         *****************     id为其他           公司的id              *****************
+         *****************     取出session中存储的type(登录者身份)      *****************
+         *****************     type   0         表示登录者是求职者      *****************
+         *****************     type   1         表示登录者是招人者      *****************
+         *****************     id     空        表示公司信息还未填写    *****************
+         *****************     id    其他       公司id                  *****************
          * \********************************************************************************/
-        if (isset($session['id'])) {
 
-            if ($company_id == 0) {
-
+        if (isset($session['user_id'])) {
+            if ($type == 0) {
                 return $this->redirect('?r=index/companylist');
             } else {
-                //正常查询
-                // $c_sql = "SELECT id FROM `lg_company` LIMIT 10";
-                // $sql=Yii::$app->db->createCommand("select * from lg_users where email='$email' AND password='$password'")->queryOne();
-                // if()
-                // echo 0;die;
-                return $this->render('index04');
-
+                if (!isset($session['id'])) {
+                    return $this->redirect('?r=company/rcompany');
+                } else {
+                    $company_id = $session['id'];
+                    return $this->redirect(array('company/cpinfo', 'company_id' => $company_id));
+                }
             }
+        } else {
+            return $this->redirect('?r=index/companylist');
         }
-        return $this->redirect('?r=index/companylist');
-
     }
 
     /**-------------------------------- 公司列表页 ---------------------------**/
@@ -120,12 +119,12 @@ class IndexController extends Controller
     {
         //判断是否有筛选条件
         $type_id = Yii::$app->request->get();
-        if (isset($type_id['type_id']) || !empty($type_id['type_id'])) {
+        if (isset($type_id['type_id']) || !empty($type_id['type_id'])){
 
             //根据筛选条件查询
             $c_sql = "SELECT id,companyallname,companyfield,companycity,companylogo FROM `lg_company` WHERE t_id = " . $type_id['type_id'] . " limit 10";
 
-        } else {
+        } else{
 
             //正常查询
             $c_sql = "SELECT id,companyallname,companyfield,companycity,companylogo FROM `lg_company` LIMIT 10";
@@ -143,37 +142,13 @@ class IndexController extends Controller
 
     }
 
+    // 发布职位
+
     /**-------------------------------- 公司详情页 ---------------------------**/
     public function actionCompanydetails()
     {
         return $this->render('index04');
 
-    }
-
-
-
-    // 发布职位
-
-    /**-------------------------------- 职位详情页 ---------------------------**/
-
-    public function actionJobdetail()
-    {
-        //根据接收的职位id查询职位信息
-
-        $position_id = Yii::$app->request->get('position_id');
-
-        if (!isset($position_id) || empty($position_id)) {
-            echo "你访问的页面不存在";
-            die;
-        }
-
-        $sql = "SELECT position_name,position_id,salaryMin,workcity,position_demand,workYear,education,department,c.id,c.companyallname,companylogo,companyfield,positionAddress,p.positionAdvantage,p.positionDetail,p.jobNature  FROM `lg_position` as p LEFT JOIN lg_company as c ON p.company_id = c.id WHERE p.position_id = $position_id";
-        $res = Yii::$app->db->createCommand($sql)->queryOne();
-
-//           var_dump($res);die;
-
-
-        return $this->render('jobdetail', ['res' => $res]);
     }
 
     //更多职位

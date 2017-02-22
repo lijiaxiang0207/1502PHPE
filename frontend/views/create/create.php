@@ -1,12 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    </script>
-    <
-    script
-    type = "text/javascript"
-    async = ""
-    src = "./home/js/conversion.js" ></script>
+    <script type="text/javascript" async="" src="./home/js/conversion.js"></script>
     <script src="./home/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script>
     <style type="text/css"></style>
     <meta content="no-siteapp" http-equiv="Cache-Control">
@@ -1448,7 +1443,7 @@
                 <img src="./home/images/logo.png" width="229" height="43" alt="拉勾招聘-专注互联网招聘"/>
             </a>
             <ul class="reset" id="navheader">
-                <li class="current"><a href="?r=index/index">首页</a></li>
+                <li><a href="?r=index/index">首页</a></li>
                 <li><a href="?r=index/companylist">公司</a></li>
                 <li><a href="#" target="_blank">论坛</a></li>
                 <?php $session = Yii::$app->session;
@@ -1457,7 +1452,7 @@
                     <?php if ($session['type'] == 0) { ?>
                         <li><a href="?r=resume/resume" rel="nofollow">我的简历</a></li>
                     <?php } else { ?>
-                        <li><a href="?r=create/index" rel="nofollow">发布职位</a></li>
+                        <li class="current"><a href="?r=create/index" rel="nofollow">发布职位</a></li>
                     <?php }
                 } ?>
             </ul>

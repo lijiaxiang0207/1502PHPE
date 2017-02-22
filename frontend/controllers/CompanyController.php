@@ -30,9 +30,6 @@ class CompanyController extends Controller
     public function actionSetone()
     {
         $data = Yii::$app->request->post();
-        echo "<pre>";
-        print_r($data);
-        die;
 
         $companyallname = $data['companyName'];
         $companyshortname = $data['companyShortName'];
@@ -59,16 +56,11 @@ class CompanyController extends Controller
         $bloon = Yii::$app->db->createCommand($sql)->execute();
         /*-----------------添加成功，跳转第二步----------------*/
         if ($bloon) {
-            // $company_id = Yii::$app->db->getLastInsertId();
-            // $session = Yii::$app->session();
-            // $session['company_id'] = $company_id;
-            // echo "<script>alert('添加成功，跳转第二步！');location.href='?r=company/settwo'</script>";
             $arr['success'] = true;
             $arr['msg'] = '添加成功！';
 
         } /*-----------------添加失败，返回重添加----------------*/
         else {
-            // echo "<script>alert('添加失败，返回重添加！');history.go(-1)</script>";
             $arr['success'] = false;
             $arr['msg'] = '添加失败！';
         }
@@ -87,9 +79,10 @@ class CompanyController extends Controller
     /*----------------------------------------------------------------------------*\
                             注册公司第二步：公司标签添加
     \*----------------------------------------------------------------------------*/
-    public function actionSettwo_pro()
+    public function actionSettwopro()
     {
-        echo '第二步';
+        $data = Yii::$app->request->post();
+        print_r($data);
         die;
     }
 
@@ -142,6 +135,70 @@ class CompanyController extends Controller
     {
         echo '第五步';
         die;
+    }
+
+
+    //公司验证  first
+
+    public function actionVctstep1()
+    {
+
+        if (Yii::$app->request->isGet) {
+            return $this->render('step1');
+        }
+
+        //筛选
+        $post = Yii::$app->request->post() ? Yii::$app->request->post() : '';
+        if (empty($post)) {
+            echo "<script>alert('非法输入数据');history.go(-1)</script>";
+        }
+
+        //验证通过进入第二步
+        return $this->render('step2', ['post' => $post]);
+
+
+    }
+
+    //公司验证 second
+    public function actionVctstep2()
+    {
+
+        if (Yii::$app->request->isGet) {
+
+            return $this->redirect('?r=company/vctstep1');
+        }
+
+
+        $post = Yii::$app->request->post() ? Yii::$app->request->post() : '';
+        if (empty($post)) {
+            echo "<script>alert('非法输入数据');history.go(-1)</script>";
+        }
+
+        $sql = "INSERT  INTO lg_companyact(`c_name`,c_stu,c_email,c_tel) VALUES('" . $post['companyName'] . "', '1','" . $post['email'] . "','" . $post['tel'] . "')";
+        $stu = Yii::$app->db->createCommand($sql)->execute();
+
+        if ($stu) {
+            return $this->render('step3');
+        } else {
+            echo "入库失败";
+        }
+
+
+    }
+
+    /*----------------------------------------------------------------------------*\
+                                       公司详情页
+    \*----------------------------------------------------------------------------*/
+    public function actionCpinfo()
+    {
+
+        $data = Yii::$app->request->get();
+        $company_id = $data['company_id'];
+        // echo "<pre>";
+        // print_r($data);die;
+        $sql = "SELECT * FROM `lg_company` where id = $company_id";
+        $arr = Yii::$app->db->createCommand($sql)->queryOne();
+        return $this->renderPartial('cpinfo', ['company' => $arr]);
     }
 
 

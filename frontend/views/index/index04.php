@@ -1,12 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
-    </script>
-    <
-    script
-    type = "text/javascript"
-    async = ""
-    src = "./home/js/conversion.js" ></script>
+    <script type="text/javascript" async="" src="./home/js/conversion.js"></script>
     <script src="./home/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script>
     <style type="text/css"></style>
     <meta content="no-siteapp" http-equiv="Cache-Control">
@@ -49,8 +44,9 @@
                 <img src="./home/images/logo.png" width="229" height="43" alt="拉勾招聘-专注互联网招聘"/>
             </a>
             <ul class="reset" id="navheader">
-                <li class="current"><a href="?r=index/index">首页</a></li>
-                <li><a href="?r=index/companylist">公司</a></li>
+                <li><a href="?r=index/index">首页</a></li>
+                <li class="current"><a href="?r=index/com">公司</a></li>
+                <li><a href="?r=index/companylist">其他公司</a></li>
                 <li><a href="#" target="_blank">论坛</a></li>
                 <?php $session = Yii::$app->session;
                 if (!empty($session['email'])) { ?>
@@ -139,7 +135,7 @@
 
                         <em class="unvalid"></em>
                         <span class="va dn" style="display: none;">拉勾未认证企业</span>
-                        <a target="_blank" class="applyC" href="http://www.lagou.com/c/auth.html">申请认证</a>
+                        <a target="_blank" class="applyC" href="?r=company/step1">申请认证</a>
                         <div class="clear"></div>
 
                         <h1 title="福建平潭协创进出口贸易有限公司" class="fullname">福建平潭协创进出口贸易有限公司</h1>

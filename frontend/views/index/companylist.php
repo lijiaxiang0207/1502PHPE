@@ -86,7 +86,10 @@
                     } else {
                         ?>
 
-                        <dd><a href="http://localhost/sixgroup/web/index.php?r=findex/index">我要找工作</a></dd>
+                        <dd><a rel="nofollow" href="?r=resume/resume">我的简历</a></dd>
+                        <dd><a href="collections.html">我收藏的职位</a></dd>
+                        <dd class="btm"><a href="subscribe.html">我的订阅</a></dd>
+                        <dd><a href="?r=index/list">我要找工作</a></dd>
 
                         <?php
                     }

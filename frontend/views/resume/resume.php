@@ -1,12 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    </script>
-    <
-    script
-    type = "text/javascript"
-    async = ""
-    src = "./home/js/conversion.js" ></script>
+    <script type="text/javascript" async="" src="./home/js/conversion.js"></script>
     <script src="./home/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script>
     <style type="text/css"></style>
     <meta content="no-siteapp" http-equiv="Cache-Control">
@@ -70,11 +65,11 @@
                 <dd><a rel="nofollow" href="?r=resume/resume">我的简历</a></dd>
                 <dd><a href="collections.html">我收藏的职位</a></dd>
                 <dd class="btm"><a href="subscribe.html">我的订阅</a></dd>
-
+                <dd><a href="?r=index/list">我要找工作</a></dd>
                 <!-- <dd><a href="create.html">我要招人</a></dd>
                 <dd><a href="accountBind.html">帐号设置</a></dd> -->
 
-                <dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd>
+                <dd class="logout"><a rel="nofollow" href="?r=login/out">退出</a></dd>
             </dl>
             <div class="dn" id="noticeTip">
                 <span class="bot"></span>
@@ -1255,7 +1250,7 @@
                 <img width="134" height="134" src="">
                 <a class="close" href="javascript:;"></a>
             </div>
-        </div>
+</div>
         <script>
             $(function () {
                 $.ajax({

@@ -65,7 +65,14 @@ class LoginController extends Controller
         } else {
             $sql = Yii::$app->db->createCommand("insert into lg_users(email,password,type)values('$email','$password','$type')")->execute();
             if ($sql) {
-                return $this->redirect(array('login/index'));
+                $arr = Yii::$app->db->createCommand("select * from lg_users where email='$email'")->queryOne();
+                $session = Yii::$app->session;
+                $session['email'] = $email;
+                $session['user_id'] = $arr['user_id'];
+                $session['type'] = $arr['type'];
+                $session['id'] = $arr['id'];
+                return $this->redirect(array('index/index'));
+                // return $this->redirect(array('login/index'));
             } else {
                 echo "<script> alert('注册失败');location.href='?r=login/register'</script>";
             }
