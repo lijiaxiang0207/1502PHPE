@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
-    <script type = "text/javascript" async = "" src = "./home/js/conversion.js" ></script>
+    <script type="text/javascript" async="" src="./home/js/conversion.js"></script>
     <script src="./home/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script>
     <style type="text/css"></style>
     <meta content="no-siteapp" http-equiv="Cache-Control">
@@ -155,7 +155,8 @@
 
                         <div class="clear oneword" style="display: block;"><img width="17" height="15"
                                                                                 src="./home/images/quote_l.png">&nbsp;
-                            <span><?php echo $company['companymotto'] ?></span> &nbsp;<img width="17" height="15" src="./home/images/quote_r.png">
+                            <span><?php echo $company['companymotto'] ?></span> &nbsp;<img width="17" height="15"
+                                                                                           src="./home/images/quote_r.png">
                         </div>
                         <h3 class="dn">已选择标签</h3>
                         <ul style="overflow:auto" id="hasLabels" class="reset clearfix">
